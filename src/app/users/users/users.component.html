@@ -1,0 +1,27 @@
+<html>
+    <body>
+            <table id="Questions">
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Name</th>
+                        <th>Email-Id</th>
+                        <th>Mobile</th>
+                        <th>Current Role</th>
+                        <th>Enabled</th>
+                    </tr>
+                </thead>
+                    <tr *ngFor="let user of userList;let i = index;">
+                        <td>{{i+1}}</td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.mobile}}</td>
+                        <td>{{user.role.roleName}}</td>
+                        <td><input type="checkbox" [checked]="user.enable" (click)="checkClick($event,user)"></td>
+                    </tr>
+                    <tr *ngIf="userList==null">
+                        <td colspan="6" style="text-align: center;">No Users available</td>
+                    </tr>
+            </table>
+    </body>
+</html>

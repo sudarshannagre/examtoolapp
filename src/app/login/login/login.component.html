@@ -1,0 +1,35 @@
+<html>
+    <body>
+        <div class="login">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+                <table id="login" [style.display]=insertHidden>
+                    <thead>
+                        <tr>
+                            <th>Login to Your Account</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" formControlName="uname" [ngClass]="{ 'is-invalid': submitted && f.uname.errors }"  placeholder="Username">
+                            <div *ngIf="submitted && f.uname.errors" class="is-invalid">
+                                <div *ngIf="f.uname.errors.required">UserName is required</div>
+                            </div>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" formControlName="pwd" [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }"  placeholder="Password">
+                            <div *ngIf="submitted && f.pwd.errors" class="is-invalid">
+                                <div *ngIf="f.pwd.errors.required">Password is required</div>
+                            </div>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td><button>Login</button> &nbsp; <button routerLink="../forgot">ForgotPassword</button><br><br>
+                            <label ngClass="signup"> New User <a routerLink="../register">SignUp</a></label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>

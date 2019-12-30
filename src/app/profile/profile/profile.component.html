@@ -1,0 +1,62 @@
+
+<html>
+    <body>
+        <div ngClass="heading">
+            User Profile
+        </div>
+        <div ngClass="table_margin">
+            <table id="profile">
+                <tr>
+                    <th>Name</th>
+                    <td><textarea [disabled]="edit" [(ngModel)]="currentUser.name" rows="1">{{currentUser.name}}</textarea></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{currentUser.email}}</td>
+                </tr>
+                <tr>
+                    <th>Mobile</th>
+                    <td><textarea [disabled]="edit" [(ngModel)]="currentUser.mobile" rows="1">{{currentUser.mobile}}</textarea></td>
+                </tr>
+                <tr>
+                    <th>Current Role</th>
+                    <td>{{currentUser.role.roleName}}</td>
+                </tr>
+            </table>
+      </div>     
+      <div>
+        <button [hidden]="save" ngClass="edit button" (click)="onClickEdit()">Edit</button>
+        <button [hidden]="edit" ngClass="save button" (click)="onClickSave(currentUser)">Save</button>
+      </div>  
+      <div [hidden]="changePwd">
+        <div ngClass="heading">
+            Change Password
+        </div>
+        <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword(changePasswordForm.value,currentUser.id)">
+            <div ngClass="table_margin">
+                <table id="profile">
+                    <tr>
+                        <th>Old Password</th>
+                        <td><input type="password" formControlName="oldPwd" [ngClass]="{ 'is-invalid': submitted && f.oldPwd.errors }"  placeholder="Old Password"/></td>
+                    </tr>
+                    <tr>
+                        <th>New Password</th>
+                        <td><input type="password" formControlName="newPwd" [ngClass]="{ 'is-invalid': submitted && f.newPwd.errors }"  placeholder="New Password"/></td>
+                    </tr>
+                    <tr>
+                        <th>Confirm Password</th>
+                        <td><input type="password" formControlName="cPwd" [ngClass]="{ 'is-invalid': submitted && f.cPwd.errors }"  placeholder="Confirm Password"/></td>
+                    </tr>
+                </table>
+            </div> 
+            <div>
+                <button ngClass="changePwd button">Change Password</button>
+            </div>     
+        </form>
+      </div> 
+      <div>
+        <button [hidden]="changeBtn" ngClass="changePwd button" (click)="onClickChange()">Change Password</button>
+      </div> 
+      
+    </body>
+</html>

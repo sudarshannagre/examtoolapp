@@ -1,0 +1,39 @@
+
+<html>
+        <body>
+            
+            <div ngClass="table_margin">
+            <ng-container *ngFor="let testType of testTypeList;">
+                <label>-------------------------- {{testType.testName | initcap}} Questions --------------------------</label><br><br>
+                <table id="Questions">
+                    <thead>
+                        <tr>
+                            <th>Que.No</th>
+                            <th>Question</th>
+                            <th>Option A</th>
+                            <th>Option B</th>
+                            <th>Option C</th>
+                            <th>Option D</th>
+                            <th>Right Option</th>
+                        </tr>
+                    </thead>
+                    <ng-container *ngFor="let question of questionsList;trackBy:byQuestion;let i = index">
+                        <tr *ngIf="question.testType.id==testType.id">
+                            <td>{{i+1}}</td>
+                            <td>{{question.question}}</td>
+                            <td>{{question.option1}}</td>
+                            <td>{{question.option2}}</td>
+                            <td>{{question.option3}}</td>
+                            <td>{{question.option4}}</td>
+                            <td>{{question.rightOption}}</td>
+                        </tr>
+                    </ng-container>
+                        <tr *ngIf="questionsList==null">
+                            <td colspan="7" style="text-align: center;">No Questions available</td>
+                        </tr>
+                </table><br>
+            </ng-container>
+          </div>        
+        </body>
+    </html>
+    

@@ -1,0 +1,32 @@
+body{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.header{
+    background-color:darkgrey;
+    border: 1px solid;
+    padding: 5Px;
+}
+
+.menu1{
+    margin-left: 45%; 
+    font-size: 30px;   
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.menu2{
+    margin-left: 47%; 
+    font-size: 40;   
+    padding-right: 20PX ;
+}
+
+.content{
+    margin-left: 5%; 
+}
+
+.logout{
+    margin-left: 60%;
+    color: #551A8B;
+}

@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <div class="login">
+            <form [formGroup]="forgotForm" (ngSubmit)="onSubmit(forgotForm.value)">
+                <table id="login">
+                    <thead>
+                        <tr>
+                            <th>Forgot Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"  placeholder="Email-Id">
+                            <div *ngIf="submitted && f.email.errors" class="is-invalid">
+                                <div *ngIf="f.email.errors.required">Email-Id is required</div>
+                            </div>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td><button routerLink="../login">Login</button> &nbsp; <button>ForgotPassword</button><br><br>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<html>
+    <body>
+        <div class="login">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+                <table id="login" [style.display]=insertHidden>
+                    <thead>
+                        <tr>
+                            <th>Registration Form</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"  placeholder="Your Name"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"  placeholder="Your Email"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"  placeholder="Your Mobile"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"  placeholder="Password"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" formControlName="cpwd" [ngClass]="{ 'is-invalid': submitted && f.cpwd.errors }"  placeholder="Confirm Password"></td>
+                        </tr>
+                        <tr>
+                            <td><button>Registration</button> &nbsp; <button routerLink="../login">Cancel</button><br><br>
+                            <label ngClass="signup"> Already User <a routerLink="../login">Login</a></label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>

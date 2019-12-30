@@ -1,0 +1,85 @@
+<html>
+    <body>
+        <div ngClass="drop-down"><label>Select Test Paper : </label>
+            <select style="width:200px;"  (change)="getQuestionsList($event)">
+                <option selected disabled>----- Select -----</option>
+                <ng-container *ngFor="let types of testTypeList">
+                    <option value="{{types.id}}">{{types.testName | initcap}}&nbsp;({{types.questionCount}})</option>
+                </ng-container>
+                <!-- <option value="Abc">Abc</option>
+                <option value="Abc">Abc</option>
+                <option value="Abc">Abc</option>
+                <option value="Abc">Abc</option> -->
+            </select>
+            <!-- <input type="text" name="">  -->
+            <!-- &nbsp;<button>Browse</button> -->
+        </div>
+        <div *ngIf="selected>0" ngClass="table_margin">
+            <table id="Questions">
+                <thead>
+                    <tr>
+                        <th>Que.No</th>
+                        <th>Question</th>
+                        <th>Option A</th>
+                        <th>Option B</th>
+                        <th>Option C</th>
+                        <th>Option D</th>
+                        <th>Right Option</th>
+                        <th style="height: 16px; width: 125px;"></th>
+                    </tr>
+                </thead>
+                    <tr *ngFor="let question of questionsList;let i = index">
+                        <td>{{i+1}}</td>
+                        <td><textarea [disabled]="editedQuestionNo != question.id" [(ngModel)]="question.question" rows="3">{{question.question}}</textarea></td>
+                        <td><textarea [disabled]="editedQuestionNo != question.id" [(ngModel)]="question.option1" rows="3">{{question.option1}}</textarea></td>
+                        <td><textarea [disabled]="editedQuestionNo != question.id" [(ngModel)]="question.option2" rows="3">{{question.option2}}</textarea></td>
+                        <td><textarea [disabled]="editedQuestionNo != question.id" [(ngModel)]="question.option3" rows="3">{{question.option3}}</textarea></td>
+                        <td><textarea [disabled]="editedQuestionNo != question.id" [(ngModel)]="question.option4" rows="3">{{question.option4}}</textarea></td>
+                        <td><textarea [disabled]="editedQuestionNo != question.id" [(ngModel)]="question.rightOption" rows="3">{{question.rightOption}}</textarea></td>
+                        <td><button (click)="editQuestion(question.id)" *ngIf="editBtn">Edit</button><button (click)="updateQuestion(this.question)" [hidden]="editedQuestionNo != question.id">Save</button> 
+                            &nbsp;<button (click)="deleteQuestion(question)">Delete</button></td>
+                    </tr>
+                    <tr *ngIf="questionsList.length == 0">
+                        <td colspan="8" style="text-align: center;">No Questions available</td>
+                    </tr>
+                
+            </table>
+            <br>
+            <button ngClass="btn_class" (click)="showInsert();">Add Question</button><br><br>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+            <table id="Questions" [style.display]=insertHidden>
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Option A</th>
+                            <th>Option B</th>
+                            <th>Option C</th>
+                            <th>Option D</th>
+                            <th>Right Option</th>
+                            <th style="height: 16px; width: 110px;"></th>
+                        </tr>
+                    </thead>
+                        <!-- <tr>
+                            <td><input type="text" [(ngModel)]="question.question" placeholder="question" id="question" required></td>
+                            <td><input type="text" [(ngModel)]="question.option1" placeholder="option1" id="option1" required></td>
+                            <td><input type="text" [(ngModel)]="question.option2" placeholder="option2" id="option2" required></td>
+                            <td><input type="text" [(ngModel)]="question.option3" placeholder="option3" id="option3" required></td>
+                            <td><input type="text" [(ngModel)]="question.option4" placeholder="option4" id="option4" required></td>
+                            <td><input type="text" [(ngModel)]="question.rightOption" placeholder="rightOption" id="rightOption" required></td>
+                            <td><button (click)="insertQuestion()">Submit</button></td>
+                        </tr> -->
+                    
+                        <tr>
+                            <td><input type="text" formControlName="question" [ngClass]="{ 'is-invalid': submitted && f.question.errors }" /></td>
+                            <td><input type="text" formControlName="option1" [ngClass]="{ 'is-invalid': submitted && f.option1.errors }" /></td>
+                            <td><input type="text" formControlName="option2" [ngClass]="{ 'is-invalid': submitted && f.option2.errors }" /></td>
+                            <td><input type="text" formControlName="option3" [ngClass]="{ 'is-invalid': submitted && f.option3.errors }" /></td>
+                            <td><input type="text" formControlName="option4" [ngClass]="{ 'is-invalid': submitted && f.option4.errors }" /></td>
+                            <td><input type="text" formControlName="rightOption" [ngClass]="{ 'is-invalid': submitted && f.rightOption.errors }" /></td>
+                            <td><button>Submit</button></td>
+                        </tr>
+            </table>
+        </form>
+      </div>        
+    </body>
+</html>
